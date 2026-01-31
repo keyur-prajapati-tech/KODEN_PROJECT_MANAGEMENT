@@ -6,7 +6,8 @@
   "scripts": {
     "postinstall": "npx prisma generate",
     "start": "prisma generate && node index.js",
-    "server": "nodemon index.js"
+    "server": "nodemon index.js",
+    "inngest": "npx inngest dev"
   },
   "keywords": [],
   "author": "",
@@ -20,11 +21,11 @@
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
-    "inngest": "^3.49.3",
     "svix": "^1.84.1",
     "ws": "^8.19.0"
   },
   "devDependencies": {
+    "inngest": "^3.50.0",
     "nodemon": "^3.1.11"
   },
   "type": "module"
