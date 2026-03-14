@@ -4,7 +4,7 @@ import prisma from "../configs/prisma.js";
 // Inngest client
 export const inngest = new Inngest({
   id: "my-app",
-  eventKey: process.env.INNGEST_EVENT_KEY,
+  // eventKey: process.env.INNGEST_EVENT_KEY,
 });
 
 // Inngest Function to create user in database
@@ -52,21 +52,9 @@ const syncUserDeletion = inngest.createFunction(
   async ({ event }) => {
     const {data} = event;
 
-    // Step 1: Delete workspace memberships
-    // await prisma.workspaceMember.deleteMany({
-    //   where: { userId: data.id }
-    // });
-
-    // Step 2: Delete user
     await prisma.user.delete({
       where: { id: data.id }
     });
-
-    // await prisma.user.delete({
-    //   where: { 
-    //     id: data.id 
-    //   }
-    // })
   }
 )
 
