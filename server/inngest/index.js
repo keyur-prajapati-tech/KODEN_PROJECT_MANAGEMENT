@@ -52,11 +52,21 @@ const syncUserDeletion = inngest.createFunction(
   async ({ event }) => {
     const {data} = event;
 
+    // Step 1: Delete workspace memberships
+    await prisma.workspaceMember.deleteMany({
+      where: { userId: data.id }
+    });
+
+    // Step 2: Delete user
     await prisma.user.delete({
-      where: { 
-        id: data.id 
-      }
-    })
+      where: { id: data.id }
+    });
+
+    // await prisma.user.delete({
+    //   where: { 
+    //     id: data.id 
+    //   }
+    // })
   }
 )
 
