@@ -3,7 +3,7 @@ import prisma from "../configs/prisma.js";
 
 // Inngest client
 export const inngest = new Inngest({
-  id: "project-management-server",
+  id: "my-app",
   eventKey: process.env.INNGEST_EVENT_KEY,
 });
 
