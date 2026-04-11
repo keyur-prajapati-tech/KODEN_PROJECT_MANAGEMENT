@@ -9,7 +9,7 @@ export const fetchWorkspaces = createAsyncThunk('workspace/fetchWorkspaces', asy
                 Authorization: `Bearer ${await getToken()}`
             }
         });
-        console.log("API RESPONSE:", data); // 👈 check this
+        //console.log("API RESPONSE:", data); // 👈 check this
         return data.workspaces ?? data.data ??  data ?? [];
     } catch (error) {
         console.log(error?.response?.data?.message || error.message);
