@@ -9,7 +9,8 @@ export const fetchWorkspaces = createAsyncThunk('workspace/fetchWorkspaces', asy
                 Authorization: `Bearer ${await getToken()}`
             }
         });
-        return data.workspaces || [];
+        console.log("API RESPONSE:", data); // 👈 check this
+        return data.workspaces ?? data.data ??  data ?? [];
     } catch (error) {
         console.log(error?.response?.data?.message || error.message);
         return []
@@ -17,7 +18,7 @@ export const fetchWorkspaces = createAsyncThunk('workspace/fetchWorkspaces', asy
 })
 
 const initialState = {
-    workspaces: [],
+    workspaces: null,
     currentWorkspace: null,
     loading: false,
 };

@@ -43,13 +43,13 @@ const Layout = () => {
         )
     }
 
-    if (loading) return (
+   if (loading || workspaces === null) return (
         <div className='flex items-center justify-center h-screen bg-white dark:bg-zinc-950'>
             <Loader2Icon className="size-7 text-blue-500 animate-spin" />
         </div>
     )
 
-    if(workspaces.length === 0){
+    if(workspaces && workspaces.length === 0){
         return(
             <div className='min-h-screen flex justify-center items-center'>
                 <CreateOrganization/>
