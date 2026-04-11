@@ -22,10 +22,10 @@ const Layout = () => {
 
     // Initial load of workspaces
     useEffect(() => {
-        if(isLoaded && user &&workspaces.length === 0){
+        if(isLoaded && user){
             dispatch(fetchWorkspaces({ getToken }));
         }
-    }, [user, isLoaded])
+    }, [user, isLoaded, dispatch])
 
     if(!user){
         return (
@@ -35,13 +35,15 @@ const Layout = () => {
         )
     }
 
-    if (loading) return (
-        <div className='flex items-center justify-center h-screen bg-white dark:bg-zinc-950'>
-            <Loader2Icon className="size-7 text-blue-500 animate-spin" />
-        </div>
-    )
+    if (!isLoaded || loading) {
+        return (
+            <div className='flex items-center justify-center h-screen bg-white dark:bg-zinc-950'>
+                <Loader2Icon className="size-7 text-blue-500 animate-spin" />
+            </div>
+        )
+    }
 
-    if(user && workspaces.length === 0){
+    if(user && !loading && workspaces.length === 0){
         return(
             <div className='min-h-screen flex justify-center items-center'>
                 <CreateOrganization afterCreateOrganizationUrl="/"/>
