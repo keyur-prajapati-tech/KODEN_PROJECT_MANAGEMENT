@@ -7,6 +7,9 @@ import {Webhook} from "svix";
 import { inngest, functions } from "./inngest/index.js";
 import workspaceRouter from "./routes/workspaceRouters.js";
 import { protect } from "./middlewares/authMiddleware.js";
+import projectrouter from "./routes/projectRouters.js";
+import taskRouter from "./routes/taskRouters.js";
+import commentRouter from "./routes/commentRouters.js";
 
 const app = express();
 
@@ -45,6 +48,9 @@ app.use("/api/inngest", serve({ client: inngest, functions }));
 
 // Routes 
 app.use("/api/workspaces", protect, workspaceRouter)
+app.use("/api/projects", protect, projectrouter)
+app.use("/api/tasks", protect, taskRouter)
+app.use("/api/comments", protect, commentRouter)
 
 app.get("/",(req,res)=>{
   res.send("Welcome To Project Management System");
